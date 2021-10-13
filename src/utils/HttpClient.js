@@ -11,15 +11,19 @@ import Swal from "sweetalert2";
 
 const isAbsoluteURLRegex = /^(?:\w+:)\/\//;
 
-axios.interceptors.request.use(async (config) => {
+const httpClient1 = axios.create({
+  baseURL: process.env.REACT_PUBLIC_APP_BASE_API_URL,
+});
+
+httpClient1.interceptors.request.use(async (config) => {
   if (!isAbsoluteURLRegex.test(config.url)) {
-    config.url = join(process.env.REACT_PUBLIC_APP_BASE_API_URL, config.url);
+    config.url = join(apiUrl, config.url);
   }
   config.timeout = 10000; // 10 Second
   return config;
 });
 
-axios.interceptors.response.use(
+httpClient1.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -44,4 +48,4 @@ axios.interceptors.response.use(
   }
 );
 
-export const httpClient = axios;
+export const httpClient = httpClient1;

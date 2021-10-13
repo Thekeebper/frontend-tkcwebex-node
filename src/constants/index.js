@@ -40,7 +40,8 @@ export const STATUS_CODE_401 = 401;
 export const STATUS_CODE_200 = 200;
 export const STATUS_CODE_408 = 408;
 
-export const apiUrl = "http://localhost:8085/api/v1";
+// export const apiUrl = "http://localhost:8085/api/v1";
+export const apiUrl = "https://server-tkcwebex-node.herokuapp.com/api/v1";
 // export const imageUrl = "http://localhost:8085";
 
 export const YES = "YES";

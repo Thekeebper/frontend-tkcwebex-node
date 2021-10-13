@@ -87,7 +87,7 @@ class TokenLine extends Component {
         <div className="box-footer">
           <small>
             <a
-              href="https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1476232700&redirect_uri=https%3A%2F%2Fnotify-bot.line.me%2Flogin%2Fcallback&state=3KNam9IA0KAg94J3rqsFeP"
+              href="https://notify-bot.line.me/th/"
               style={{ color: "blue" }}
               target="_blank"
             >

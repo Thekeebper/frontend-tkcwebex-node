@@ -9,28 +9,24 @@ import {
 } from "./../constants";
 import Swal from "sweetalert2";
 
-const httpClient = axios.create({
-  baseURL: process.env.REACT_PUBLIC_APP_BASE_API_URL,
-});
-
 const isAbsoluteURLRegex = /^(?:\w+:)\/\//;
 
-httpClient.interceptors.request.use(async (config) => {
+axios.interceptors.request.use(async (config) => {
   if (!isAbsoluteURLRegex.test(config.url)) {
-    config.url = join(apiUrl, config.url);
+    config.url = join(process.env.REACT_PUBLIC_APP_BASE_API_URL, config.url);
   }
   config.timeout = 10000; // 10 Second
   return config;
 });
 
-httpClient.interceptors.response.use(
+axios.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
     // debugger;
     console.log(JSON.stringify(error, undefined, 2));
-    if (httpClient.isCancel(error)) {
+    if (axios.isCancel(error)) {
       return Promise.reject(error);
     } else if (!error.response) {
       Swal.fire({
@@ -48,4 +44,4 @@ httpClient.interceptors.response.use(
   }
 );
 
-export const httpClient = httpClient;
+export const httpClient = axios;
